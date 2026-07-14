@@ -1,0 +1,59 @@
+<p-card header="Messages persistés en base" styleClass="surface-card">
+  <p-table
+    [value]="messages"
+    [loading]="loading"
+    [tableStyle]="{ 'min-width': '100%' }"
+    styleClass="messages-table"
+    [rowHover]="true"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Message ID</th>
+        <th>Correlation ID</th>
+        <th>Queue</th>
+        <th>Statut</th>
+        <th>Reçu le</th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-message>
+      <tr>
+        <td class="truncate table-strong">{{ message.mqMessageId }}</td>
+        <td class="truncate">{{ message.correlationId || 'N/A' }}</td>
+        <td>{{ message.sourceQueue }}</td>
+        <td>
+          <p-tag
+            [severity]="resolveSeverity(message.status)"
+            [value]="message.status"
+            styleClass="status-pill"
+          ></p-tag>
+        </td>
+        <td>{{ message.receivedAt | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+        <td>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-eye"
+            label="Voir"
+            severity="secondary"
+            [text]="true"
+            (click)="onViewMessage(message)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6">Aucun message disponible.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-paginator
+    [first]="first"
+    [rows]="rows"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    (onPageChange)="pageChange.emit($event)"
+  ></p-paginator>
+</p-card>

@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  padding: 2rem clamp(1rem, 2vw, 2rem) 7.5rem;
+  background:
+    radial-gradient(circle at 12% 10%, #fff2cc 0%, rgba(255, 242, 204, 0) 38%),
+    radial-gradient(circle at 88% 5%, #d7f7ee 0%, rgba(215, 247, 238, 0) 35%),
+    linear-gradient(135deg, #f8fbfd 0%, #eef3f8 100%);
+  color: #1f2937;
+}
+
+.hero {
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.1;
+  margin: 0;
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.hero p {
+  margin-top: 0.65rem;
+  max-width: 880px;
+  color: #4b5563;
+  font-size: 1rem;
+}
+
+.dashboard-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  :host {
+    padding: 1rem;
+  }
+}

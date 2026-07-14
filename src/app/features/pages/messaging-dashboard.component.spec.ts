@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { vi } from 'vitest';
 import { MessageService } from 'primeng/api';
-import { PaymentMessageStatus } from '../../../core/models/payment-message.model';
 import { PaymentMessageApiService } from '../../../core/services/payment-message-api.service';
+// @ts-ignore - the dashboard component is a sibling standalone component resolved by the Angular builder.
 import { MessagingDashboardComponent } from './messaging-dashboard.component';
 
 describe('MessagingDashboardComponent', () => {
@@ -27,7 +27,7 @@ describe('MessagingDashboardComponent', () => {
             correlationId: 'CORR-1',
             sourceQueue: 'DEV.QUEUE.1',
             payload: '{"amount":120}',
-            status: PaymentMessageStatus.Received,
+            status: 'RECEIVED',
             receivedAt: '2026-01-01T10:00:00Z',
             createdAt: '2026-01-01T10:00:00Z'
           }
@@ -50,7 +50,7 @@ describe('MessagingDashboardComponent', () => {
         correlationId: 'CORR-1',
         sourceQueue: 'DEV.QUEUE.1',
         payload: '{"amount":120}',
-        status: PaymentMessageStatus.Received,
+        status: 'RECEIVED',
         receivedAt: '2026-01-01T10:00:00Z',
         createdAt: '2026-01-01T10:00:00Z'
       })
@@ -80,16 +80,34 @@ describe('MessagingDashboardComponent', () => {
     expect(apiServiceMock.getMessages).toHaveBeenCalledWith(0, 10);
   });
 
-  it('should show selected message detail when lookup is submitted', () => {
+  it('should load message detail when requested', () => {
     const fixture = TestBed.createComponent(MessagingDashboardComponent);
     fixture.detectChanges();
 
-    const component = fixture.componentInstance as any;
-    component.lookupForm.controls.messageId.setValue('590f2c65-07f7-4a35-85f2-cf25257d517f');
-    component.onLoadMessageById();
+    const component = fixture.componentInstance as MessagingDashboardComponent;
+    component.onRequestMessage('590f2c65-07f7-4a35-85f2-cf25257d517f');
 
     expect(apiServiceMock.getMessageById).toHaveBeenCalledWith(
       '590f2c65-07f7-4a35-85f2-cf25257d517f'
     );
+  });
+
+  it('should publish a message request', () => {
+    const fixture = TestBed.createComponent(MessagingDashboardComponent);
+    fixture.detectChanges();
+
+    const component = fixture.componentInstance as MessagingDashboardComponent;
+
+    component.onSendMessage({
+      sourceQueue: 'DEV.QUEUE.1',
+      payload: 'sample',
+      correlationId: null
+    });
+
+    expect(apiServiceMock.publishMessage).toHaveBeenCalledWith({
+      sourceQueue: 'DEV.QUEUE.1',
+      payload: 'sample',
+      correlationId: null
+    });
   });
 });

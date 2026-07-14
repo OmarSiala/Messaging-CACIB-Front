@@ -1,0 +1,81 @@
+:host {
+  display: block;
+}
+
+:host ::ng-deep .surface-card {
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
+}
+
+:host ::ng-deep .surface-card .p-card-body {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+label {
+  font-weight: 600;
+  color: #334155;
+}
+
+.inline-error {
+  margin: 0.25rem 0 0;
+}
+
+.lookup-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.detail-wrapper {
+  margin-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1rem;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.detail-grid p {
+  margin: 0.25rem 0 0;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.label {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.payload-box {
+  margin-top: 1rem;
+}
+
+.payload-box pre {
+  margin: 0.5rem 0 0;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 260px;
+  overflow: auto;
+}
+
+.empty-state {
+  color: #64748b;
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+}

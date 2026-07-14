@@ -1,0 +1,57 @@
+:host {
+  display: block;
+}
+
+:host ::ng-deep .surface-card {
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
+}
+
+:host ::ng-deep .surface-card .p-card-body {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+:host ::ng-deep .messages-table .p-datatable-thead > tr > th {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #f8fafc;
+  border: 0;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+:host ::ng-deep .messages-table .p-datatable-tbody > tr > td {
+  border-color: #e2e8f0;
+  vertical-align: middle;
+}
+
+:host ::ng-deep .messages-table .p-datatable-tbody > tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+:host ::ng-deep .messages-table .p-datatable-tbody > tr:hover {
+  background: #eef6ff;
+}
+
+:host ::ng-deep .messages-table .p-datatable-wrapper {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.table-strong {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.status-pill {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+}
+
+.truncate {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

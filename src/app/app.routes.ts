@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { MessagingDashboardComponent } from './features/messaging/pages/messaging-dashboard.component';
+import { MessagingDashboardComponent } from './features/pages/messaging-dashboard.component';
 
 export const routes: Routes = [
 	{

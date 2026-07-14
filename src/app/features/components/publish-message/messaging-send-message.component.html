@@ -1,0 +1,87 @@
+<button
+  pButton
+  type="button"
+  class="composer-launcher"
+  icon="pi pi-send"
+  label="Publier un message"
+  severity="help"
+  (click)="openComposer()"
+></button>
+
+@if (isOpen) {
+  <section class="composer-shell" aria-label="Publier un message">
+    <div class="composer-card">
+      <div class="composer-header">
+        <div>
+          <p class="composer-eyebrow">Nouveau message</p>
+          <h2>Publication MQ</h2>
+        </div>
+
+        <button
+          pButton
+          type="button"
+          icon="pi pi-times"
+          class="composer-close"
+          severity="secondary"
+          [text]="true"
+          (click)="closeComposer()"
+        ></button>
+      </div>
+
+      <form [formGroup]="sendForm" (ngSubmit)="onSendMessage()" class="composer-form" novalidate>
+        <div class="composer-meta">
+          <span class="composer-chip">Queue cible: {{ defaultSourceQueue }}</span>
+          <span class="composer-chip composer-chip-soft">Chat style</span>
+        </div>
+
+        <label for="sourceQueue">Queue cible</label>
+        <input
+          id="sourceQueue"
+          pInputText
+          formControlName="sourceQueue"
+          autocomplete="off"
+          maxlength="128"
+        />
+
+        <label for="correlationId">Correlation ID (optionnel)</label>
+        <input
+          id="correlationId"
+          pInputText
+          formControlName="correlationId"
+          autocomplete="off"
+          maxlength="64"
+        />
+
+        <label for="payload">Payload</label>
+        <textarea
+          id="payload"
+          pTextarea
+          formControlName="payload"
+          rows="8"
+          [autoResize]="true"
+          maxlength="20000"
+          placeholder="Écrivez votre message ici..."
+        ></textarea>
+
+        @if (sendForm.controls.payload.touched && sendForm.controls.payload.invalid) {
+          <p-message
+            severity="error"
+            text="Le payload est obligatoire avant envoi."
+            styleClass="inline-error"
+          ></p-message>
+        }
+
+        <div class="composer-actions">
+          <button pButton type="button" label="Réduire" severity="secondary" (click)="closeComposer()"></button>
+          <button
+            pButton
+            type="submit"
+            label="Envoyer vers MQ"
+            icon="pi pi-send"
+            [loading]="isSending"
+          ></button>
+        </div>
+      </form>
+    </div>
+  </section>
+}

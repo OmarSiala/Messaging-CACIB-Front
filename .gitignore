@@ -1,71 +1,44 @@
-### Node
-# Dependencies
-node_modules/
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
-# Logs
-*.log
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
 
-# Runtime data
-*.pid
-*.pid.lock
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
 
-# Coverage
-coverage/
-*.lcov
-.nyc_output
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
-# Build output
-dist/
-build/Release
-
-# TypeScript cache
-*.tsbuildinfo
-
-# Framework build output and caches
-.cache
-.parcel-cache
-.next
-out/
-.nuxt
-
-# dotenv environment variable files
-.env
-.env.local
-.env.*.local
-
-# npm cache directory
-.npm
-*.tgz
-
-# yarn v2
-.yarn/cache
-.yarn/unplugged
-.yarn/install-state.gz
-.pnp.*
-
-### Windows
-# Windows thumbnail cache files
-Thumbs.db
-
-# Folder config file
-[Dd]esktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows shortcuts
-*.lnk
-
-### VS Code
-# VSCode settings (keep shared configuration)
+# Visual Studio Code
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/mcp.json
+.history/*
 
-# Local History for Visual Studio Code
-.history/
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+__screenshots__/
 
-# Built Visual Studio Code Extensions
-*.vsix
+# System files
+.DS_Store
+Thumbs.db

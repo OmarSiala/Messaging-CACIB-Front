@@ -1,0 +1,65 @@
+<p-card header="Rechercher un message par ID" styleClass="surface-card">
+  <form [formGroup]="lookupForm" (ngSubmit)="onLoadMessageById()" class="lookup-grid" novalidate>
+    <label for="messageId">Identifiant technique (UUID)</label>
+    <input
+      id="messageId"
+      pInputText
+      formControlName="messageId"
+      autocomplete="off"
+      placeholder="00000000-0000-0000-0000-000000000000"
+    />
+
+    @if (lookupForm.controls.messageId.touched && lookupForm.controls.messageId.invalid) {
+      <p-message severity="error" text="UUID invalide." styleClass="inline-error"></p-message>
+    }
+
+    <button
+      pButton
+      type="submit"
+      label="Lire le message"
+      icon="pi pi-search"
+      [loading]="isLoading"
+    ></button>
+  </form>
+
+  <div class="detail-wrapper">
+    @if (selectedMessage) {
+      <div class="detail-grid">
+        <div>
+          <span class="label">ID</span>
+          <p>{{ selectedMessage.id }}</p>
+        </div>
+        <div>
+          <span class="label">MQ Message ID</span>
+          <p>{{ selectedMessage.mqMessageId }}</p>
+        </div>
+        <div>
+          <span class="label">Correlation ID</span>
+          <p>{{ selectedMessage.correlationId || 'N/A' }}</p>
+        </div>
+        <div>
+          <span class="label">Queue source</span>
+          <p>{{ selectedMessage.sourceQueue }}</p>
+        </div>
+        <div>
+          <span class="label">Statut</span>
+          <p-tag
+            [severity]="resolveSeverity(selectedMessage.status)"
+            [value]="selectedMessage.status || 'UNKNOWN'"
+          ></p-tag>
+        </div>
+        <div>
+          <span class="label">Reçu le</span>
+          <p>{{ selectedMessage.receivedAt | date: 'dd/MM/yyyy HH:mm:ss' }}</p>
+        </div>
+      </div>
+
+      <div class="payload-box">
+        <span class="label">Payload</span>
+        <pre>{{ selectedMessage.payload }}</pre>
+      </div>
+    } @else {
+      <p class="empty-state">Aucun message chargé pour le moment.</p>
+    }
+  </div>
+</p-card>

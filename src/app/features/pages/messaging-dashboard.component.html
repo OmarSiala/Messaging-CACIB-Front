@@ -1,0 +1,36 @@
+<p-toast position="top-right"></p-toast>
+
+<section class="hero">
+  <h1>Messaging Monitor</h1>
+  <p>
+    Supervision en temps réel des messages IBM MQ sur DEV.QUEUE.1 avec publication et
+    consultation transactionnelle.
+  </p>
+</section>
+
+<section class="dashboard-stack">
+  <app-messaging-message-detail
+    [selectedMessage]="selectedMessage()"
+    [isLoading]="isDetailLoading()"
+    (messageRequested)="onRequestMessage($event)"
+  ></app-messaging-message-detail>
+
+  <app-messaging-messages-table
+    [messages]="messages()"
+    [loading]="isListLoading()"
+    [totalRecords]="totalElements"
+    [first]="currentPage * pageSize"
+    [rows]="pageSize"
+    [rowsPerPageOptions]="pageSizeOptions"
+    (pageChange)="onPageChange($event)"
+    (messageSelected)="onSelectMessage($event)"
+  ></app-messaging-messages-table>
+</section>
+
+<app-messaging-send-message
+  [isOpen]="isComposerOpen()"
+  [defaultSourceQueue]="defaultSourceQueue"
+  [isSending]="isSending()"
+  (isOpenChange)="isComposerOpen.set($event)"
+  (sendMessage)="onSendMessage($event)"
+></app-messaging-send-message>
