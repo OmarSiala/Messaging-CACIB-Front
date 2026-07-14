@@ -48,7 +48,7 @@ export class MessagingMessageDetailComponent implements OnChanges {
   }
 
   protected resolveSeverity(status: string): 'success' | 'warn' | 'danger' | 'info' | 'secondary' | 'contrast' {
-    const normalized = status?.toUpperCase() ?? '';
+    const normalized = (status ?? '').trim().toUpperCase();
 
     if (normalized === PaymentMessageStatus.Received) {
       return 'info';
@@ -58,7 +58,7 @@ export class MessagingMessageDetailComponent implements OnChanges {
       return 'success';
     }
 
-    if (normalized === PaymentMessageStatus.Failed) {
+    if (normalized === PaymentMessageStatus.Rejected) {
       return 'danger';
     }
 

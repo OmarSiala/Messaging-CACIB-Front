@@ -32,7 +32,7 @@ export class MessagingMessagesTableComponent {
   }
 
   protected resolveSeverity(status: string): 'success' | 'warn' | 'danger' | 'info' | 'secondary' | 'contrast' {
-    const normalized = status?.toUpperCase() ?? '';
+    const normalized = (status ?? '').trim().toUpperCase();
 
     if (normalized === PaymentMessageStatus.Received) {
       return 'info';
@@ -42,7 +42,7 @@ export class MessagingMessagesTableComponent {
       return 'success';
     }
 
-    if (normalized === PaymentMessageStatus.Failed) {
+    if (normalized === PaymentMessageStatus.Rejected) {
       return 'danger';
     }
 

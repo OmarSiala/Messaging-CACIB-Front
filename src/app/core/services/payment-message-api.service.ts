@@ -20,7 +20,7 @@ export class PaymentMessageApiService {
   private readonly publishPath = 'http://localhost:8080/api/v1/mq/messages';
 
   getMessages(page: number, size: number): Observable<PageResponse<PaymentMessageResponse>> {
-    const params = new HttpParams().set('page', page).set('size', size).set('sort', 'receivedAt');
+    const params = new HttpParams().set('page', page).set('size', size).set('sort', 'receivedAt,desc');
 
     this.logger.info('Requesting paginated message list', { page, size });
 

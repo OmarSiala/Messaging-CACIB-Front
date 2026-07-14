@@ -1,7 +1,7 @@
 export enum PaymentMessageStatus {
   Received = 'RECEIVED',
   Processed = 'PROCESSED',
-  Failed = 'FAILED',
+  Rejected = 'REJECTED',
   Unknown = 'UNKNOWN'
 }
 
