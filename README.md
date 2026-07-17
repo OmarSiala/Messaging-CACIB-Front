@@ -1,5 +1,24 @@
 # MessagingCacib
 
+## Contexte
+
+Application Angular dédiée à la gestion de messages de paiement. Le socle déjà implémenté couvre l'affichage, la consultation et la publication de messages, avec une UI construite en composants standalone.
+
+### Ce qui est déjà en place
+
+- 1 page principale de dashboard qui orchestre l'ensemble du parcours utilisateur.
+- 3 composants métier: la liste des messages, le détail d'un message et le formulaire d'envoi.
+- 1 couche service pour appeler le backend et gérer la récupération, le détail et la publication des messages.
+- 1 couche modèle pour typer les données échangées avec l'API.
+- PrimeNG pour les composants d'interface comme les tableaux, cartes, tags, pagination, toasts et formulaires.
+
+### Découpage technique
+
+- Couche présentation: composants standalone et formulaire réactif.
+- Couche métier: dashboard qui coordonne la liste, le détail et l'envoi.
+- Couche service: `PaymentMessageApiService` pour centraliser les appels HTTP.
+- Couche données: interfaces et enum dans `core/models`.
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.3.
 
 ## Development server
